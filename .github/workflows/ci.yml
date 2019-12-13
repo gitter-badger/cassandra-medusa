@@ -24,17 +24,19 @@ jobs:
           ${{ runner.os }}-venv-
     - name: Install dependencies
       run: |
+        curl https://pyenv.run | bash
+        exec $SHELL
+        pyenv install 3.4.3 3.6.7
+        pyenv virtualenv -p python3.4 3.4.3 py34
+        pyenv virtualenv -p python3.6 3.6.7 py36
+        pyenv shell py36 py34
         python3 -m venv venv
         . venv/bin/activate
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install ccm
         pip install tox
-        curl https://pyenv.run | bash
-        exec $SHELL
-        pyenv install 3.4.3 3.6.7
-        pyenv local 3.4.3
-        pyenv global 3.6.7
+        
     - name: Lint with flake8
       run: |
         pip install flake8
