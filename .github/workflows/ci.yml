@@ -30,9 +30,8 @@ jobs:
         pip install -r requirements.txt
         pip install ccm
         pip install tox
-        git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-        export PYENV_ROOT="~/.pyenv"
-        export PATH="~/.pyenv/shims:~/.pyenv/bin:$PATH"
+        curl https://pyenv.run | bash
+        exec $SHELL
         pyenv install 3.4.3 3.6.7
         pyenv local 3.4.3
         pyenv global 3.6.7
