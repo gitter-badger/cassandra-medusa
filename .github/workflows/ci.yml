@@ -26,6 +26,11 @@ jobs:
       run: |
         curl https://pyenv.run | bash
         exec $SHELL
+        git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+        exec "$SHELL"
+        export PATH="~/.pyenv/bin:$PATH"
+        eval "$(pyenv init -)"
+        eval "$(pyenv virtualenv-init -)"
         pyenv install 3.4.3 3.6.7
         pyenv virtualenv -p python3.4 3.4.3 py34
         pyenv virtualenv -p python3.6 3.6.7 py36
