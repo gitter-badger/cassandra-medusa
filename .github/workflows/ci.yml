@@ -32,6 +32,7 @@ jobs:
         eval "$(pyenv init -)"
         eval "$(pyenv virtualenv-init -)"
         pyenv install 3.4.3 3.6.7
+        pyenv local 3.4.3 3.6.7
         pyenv virtualenv -p python3.4 3.4.3 py34
         pyenv virtualenv -p python3.6 3.6.7 py36
         pyenv shell py36 py34
@@ -41,6 +42,7 @@ jobs:
         pip install -r requirements.txt
         pip install ccm
         pip install tox
+        pip install tox-globinterpreter
         
     - name: Lint with flake8
       run: |
